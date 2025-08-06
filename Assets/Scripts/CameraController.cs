@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         _startPosition = transform.localPosition;
     }
 
