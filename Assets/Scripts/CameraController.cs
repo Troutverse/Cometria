@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 200f;
 
     public Transform playerBody;
 
     private float xRotation = 0f;
 
-    public bool useHeadbob = true;
+    public bool useHeadbob = false;
     public float bobX = 15.0f;
     public float bobXs = 0.01f;
     public float bobY = 15.0f;

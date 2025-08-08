@@ -4,58 +4,59 @@ using UnityEngine.InputSystem;
 
 public class YuiController : MonoBehaviour
 {
-    #region
     public float YuiCurrentSpeed;
     public float YuiWalkSpeed = 5.0f;
     public float YuiSprintSpeed = 8.0f;
 
-    private bool YuiSprinting = false;
-
     private Vector2 YuiMoveInput;
 
     public bool YuiIsGround = false;
-
     public float YuiJumpPower = 10.0f;
 
     private Animator YuiAnimator;
 
-    private Rigidbody YuiRB;
+    private Rigidbody YuiRigidBody;
+
+    private PlayerMove YuiPlayerMove;
+    private PlayerJump YuiPlayerJump;
 
     public Transform YuiCamera;
-    #endregion
 
-    // Yui Move Input
     private void OnMove(InputValue value)
     {
         YuiMoveInput = value.Get<Vector2>();
+        YuiPlayerMove.SetMoveInput(YuiMoveInput);
     }
 
-    // Yui Sprint Input
     private void OnSprint(InputValue value)
     {
-        if (value.isPressed) YuiSprinting = !YuiSprinting;
+        if (value.isPressed)
+        {
+            bool CurretSprint = YuiPlayerMove.GetSprint();
+            YuiPlayerMove.SetSprint(!CurretSprint);
+        }
+        
     }
 
-    // Yui Jump Input
     private void OnJump(InputValue value)
     {
-        if (value.isPressed && YuiIsGround)
+        if (value.isPressed) 
         {
-            YuiRB.AddForce(Vector3.up * YuiJumpPower, ForceMode.Impulse);
-            YuiIsGround = false;
-            YuiAnimator.SetBool("IsJumping", false);
+            YuiPlayerJump.StarJump();
         }
     }
     private void Start()
     {
-        YuiRB = GetComponent<Rigidbody>();
+        YuiRigidBody = GetComponent<Rigidbody>();
         YuiAnimator = GetComponent<Animator>();
+        YuiPlayerMove = new PlayerMove(YuiRigidBody, YuiWalkSpeed, YuiSprintSpeed);
+        YuiPlayerJump = new PlayerJump(YuiRigidBody, YuiAnimator, YuiJumpPower);
+
     }
     private void FixedUpdate()
     {
-        if (YuiRB == null || YuiAnimator == null) return;
-        YuiCurrentSpeed = YuiSprinting ? YuiSprintSpeed : YuiWalkSpeed;
-
+        if (YuiRigidBody == null || YuiAnimator == null) return;
+        
         Vector3 cameraForward = YuiCamera.forward;
         Vector3 cameraRight = YuiCamera.right;
 
@@ -64,23 +65,15 @@ public class YuiController : MonoBehaviour
         cameraForward.Normalize();
         cameraRight.Normalize();
 
-        Vector3 YuiMoveDirection = cameraForward * YuiMoveInput.y + cameraRight * YuiMoveInput.x;
+        YuiPlayerMove.PlayerMovement(cameraForward, cameraRight);
 
-        // 리지드바디 속도 적용 (Y축 속도 보존)
-        YuiRB.linearVelocity = new Vector3(YuiMoveDirection.x * YuiCurrentSpeed, YuiRB.linearVelocity.y, YuiMoveDirection.z * YuiCurrentSpeed);
-
-        float currentSpeed = YuiMoveDirection.magnitude * YuiCurrentSpeed;
+        float currentSpeed = YuiRigidBody.linearVelocity.magnitude;
         YuiAnimator.SetFloat("MoveSpeed", currentSpeed);
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // 충돌한 오브젝트가 "Ground" 태그를 가지고 있다면
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            YuiIsGround = true; // 땅에 닿았다고 설정
-            YuiAnimator.SetBool("IsJumping", true);
-        }
+        YuiPlayerJump.PlayerCollisonOnGround(collision);
     }
 }
