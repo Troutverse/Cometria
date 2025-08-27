@@ -208,7 +208,6 @@ public class Client : MonoBehaviour
 
     private void Update()
     {
-        // Update에서 부드러운 움직임을 처리합니다.
         foreach (var item in OtherPlayers)
         {
             int playerId = item.Key;

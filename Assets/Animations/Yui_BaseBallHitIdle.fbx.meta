@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d7b33ba95ed357842a1e5863ee7062f3
+guid: bc8f0149f4a217d42b0305c5f475fdab
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Yui_RifleIdle
+      name: Yui_BaseBallHitIdle
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 514
+      lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
