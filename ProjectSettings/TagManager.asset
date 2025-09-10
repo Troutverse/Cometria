@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
-  - Enemy
+  - PracticeBall
+  - BallStandSpwanPoint
+  - Bat
+  - Pitcher
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -14,10 +18,10 @@ TagManager:
   - Water
   - UI
   - Interactable
-  - 
-  - 
-  - 
-  - 
+  - Bat
+  - Player
+  - NoPlayerNoBat
+  - Ball
   - 
   - 
   - 

@@ -78,4 +78,9 @@ crashlytics-build.properties
 /[Aa]ssets/Hovl Studio
 
 /Assets/CustomAssets
-
+/Assets/Samples
+/Assets/XR
+/Assets/Others
+/Assets/Resources
+/Assets/StreamingAssets
+/Assets/Models

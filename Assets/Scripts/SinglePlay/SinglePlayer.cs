@@ -6,31 +6,22 @@ public class SinglePlayer : MonoBehaviour
     public Button SinglePlayButton;
 
     public GameObject PlayerPrefab;
-    private GameObject MyPlayer;
     
-    public Camera LobbyCamera;
+    public GameObject LobbyCamera;
     public GameObject Cometria;
 
-    private void Start()
-    {
-        SinglePlayButton.onClick.AddListener(Single);
-    }
     public void Single()
     {
         this.gameObject.SetActive(false);
         LobbyCamera.gameObject.SetActive(false);
         Cometria.SetActive(false);
+
         if (PlayerPrefab != null)
         {
-            MyPlayer = Instantiate(PlayerPrefab, new Vector3(0, 0.5f, 0), Quaternion.identity);
-            if (MyPlayer.GetComponent<YuiController>() != null)
-            {
-                MyPlayer.GetComponent<YuiController>().IsLocalPlayer = true;
-            }
+            Vector3 playerSpawnPoint = new Vector3(1.2f, 0.2f, 0);
+            Quaternion playerSpawnQuaternion = Quaternion.identity;
+
+            Instantiate(PlayerPrefab, playerSpawnPoint, playerSpawnQuaternion);
         }
-    }
-    void Update()
-    {
-        
     }
 }
