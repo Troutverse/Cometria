@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8123386370216385119}
   - component: {fileID: 8072939063575362341}
   - component: {fileID: 7344288753405187326}
+  - component: {fileID: -2629233588615485406}
   m_Layer: 10
   m_Name: Baseball
   m_TagString: Ball
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4080813220369245075}
   serializedVersion: 2
   m_LocalRotation: {x: -0.3832717, y: 0.41340694, z: -0.22076422, w: 0.7959025}
-  m_LocalPosition: {x: -0.05, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -137,3 +138,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2629233588615485406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4080813220369245075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc75ead162476045b262d98b800404c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strikeZoneColor: {fileID: 0}

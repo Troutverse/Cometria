@@ -10,6 +10,7 @@ TagManager:
   - Bat
   - Pitcher
   - Ball
+  - Defender
   layers:
   - Default
   - TransparentFX
@@ -20,13 +21,13 @@ TagManager:
   - Interactable
   - Bat
   - Player
-  - NoPlayerNoBat
+  - Defender
   - Ball
-  - 
-  - 
-  - 
-  - 
-  - 
+  - StrikeZone
+  - BallZone
+  - HomeRunZone
+  - FairZone
+  - FoulZone
   - 
   - 
   - 
